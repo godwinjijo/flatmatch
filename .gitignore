@@ -1,0 +1,18 @@
+# --- Java / Maven ---
+backend/target/
+*.class
+
+# --- Node / React ---
+frontend/node_modules/
+frontend/dist/
+npm-debug.log*
+
+# --- Environment / secrets ---
+.env
+.env.*
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

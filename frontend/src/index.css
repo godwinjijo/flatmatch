@@ -1,0 +1,21 @@
+:root {
+  font-family: 'Segoe UI', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1f2333;
+  background-color: #f4f5fa;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1, h2, h3 { margin: 0.4em 0; }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.05rem; margin-top: 1.2em; }
+h2 small { color: #7a809d; font-weight: 400; }
+button { font: inherit; cursor: pointer; }
+input, textarea { font: inherit; }

@@ -1,0 +1,22 @@
+# Render Blueprint for the FlatMatch backend.
+# In Render: New + -> Blueprint -> pick the flatmatch repo -> it reads this file.
+# Fill in the DB_* and FRONTEND_URL values after creating the Neon database.
+services:
+  - type: web
+    name: flatmatch-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: FLATMATCH_DB_URL
+        sync: false          # you paste the Neon JDBC string
+      - key: FLATMATCH_DB_USERNAME
+        sync: false          # from the Neon connection details
+      - key: FLATMATCH_DB_PASSWORD
+        sync: false          # from the Neon connection details
+      - key: FLATMATCH_JWT_SECRET
+        generateValue: true  # Render creates a random 32+ char secret
+      - key: FLATMATCH_FRONTEND_URL
+        sync: false          # e.g. https://flatmatch.vercel.app (set after Vercel)
