@@ -46,4 +46,14 @@ public class GlobalExceptionHandler {
                 "error", ex.getMessage()
         ));
     }
+
+    /** Malformed/unreadable request body (bad JSON, invalid enum value...) -> clean 400.
+     *  Without this, Spring Security reports it as an empty 403, which is very confusing. */
+    @ExceptionHandler(org.springframework.http.converter.HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, Object>> handleUnreadable(org.springframework.http.converter.HttpMessageNotReadableException ex) {
+        return ResponseEntity.badRequest().body(Map.of(
+                "status", 400,
+                "error", "Malformed request body — check JSON syntax and field values"
+        ));
+    }
 }

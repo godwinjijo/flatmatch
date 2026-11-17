@@ -67,7 +67,7 @@ flatmatch/
 - [x] Bug found & fixed by testing: deck no longer shows already-swiped profiles
       (backend filters via swipe history)
 
-### Phase 5 — Auth + polish (in progress 🚧)
+### Phase 5 — Auth + polish (done ✅)
 - [x] README.md (features, architecture, matching algorithm, run instructions)
 - [x] Auth: register / login with BCrypt password hashing
 - [x] JWT stateless auth (HMAC-signed, 24h expiry), Spring Security config
@@ -89,7 +89,17 @@ flatmatch/
       - 5 chat-rule unit tests — 23 total, all passing
       - verified live in the browser with two users (Vikram in the UI, Meera
         as a scripted socket): two-way messages arrive instantly
-- [ ] Deployed demo (Render/Railway for API + Vercel/Netlify for React)
+- [x] Deployed demo — LIVE 🚀
+      - Backend: Render (Docker) → https://flatmatch-api-xz8a.onrender.com
+      - Database: Neon serverless PostgreSQL 18 (free tier, never expires)
+      - Frontend: Vercel → https://flatmatch-jijo8093gmailcoms-projects.vercel.app
+      - Env vars namespaced FLATMATCH_* (avoid collisions), secrets not in repo
+      - CORS: preflights answered at the Spring Security layer (CorsConfigurationSource)
+        + MVC layer — protected endpoints otherwise reject the browser's
+        token-less OPTIONS request before CORS can respond
+      - Verified end-to-end on production: register → onboard → candidates
+        → mutual LIKE → match → two-way WebSocket chat over wss, persisted in Neon
+      - Known trade-off: Render free tier sleeps after ~15 min idle (≈50s cold start)
 
 ## Stretch ideas (post-MVP)
 - Weekly schedule grid (when are you home?)
